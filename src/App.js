@@ -1,31 +1,38 @@
 import React from "react";
 import logo from "./assets/logo.svg";
 import { StaysContext } from "./context/stays-context";
+import { TOOGLE_FILTER } from "./context/action";
+import { MdSearch } from "react-icons/md";
 
 import Filters from "./components/Filters";
 import StaysItems from "./components/StaysItems";
 
 function App() {
-  let { state } = React.useContext(StaysContext);
-  let [active, setActive] = React.useState(false);
+  let { state, dispatch } = React.useContext(StaysContext);
   return (
     <div className="container mx-auto px-3">
-      {active ? <Filters /> : null}
+      {state.toggleFilter ? <Filters /> : null}
 
-      <div className="flex justify-between mt-5">
-        <div>
+      <div className="flex flex-col lg:flex-row lg:justify-between mt-5">
+        <div className="mb-4">
           <img src={logo} alt="winbnb logo" />
         </div>
         <div
-          className="shadow-lg rounded-lg flex items-center cursor-pointer"
-          onClick={(e) => setActive(!active)}
+          className="shadow-lg rounded-lg flex items-center cursor-pointer w-3/5 lg:w-auto mx-auto lg:mx-0"
+          onClick={(e) => dispatch({ type: TOOGLE_FILTER })}
         >
-          <div className="px-3">{state.city ? state.city : "location"}</div>
+          <div className="px-3">
+            {state.city ? `${state.city}, Findland` : "Add location"}
+          </div>
           <div className="border-r-2 border-l-2 py-4 px-3 text-gray-600">
-            Add guest
+            {state.guest
+              ? state.guest > 1
+                ? `${state.guest} guests`
+                : `${state.guest} guest`
+              : "Add Guest"}
           </div>
           <div className="px-3">
-            <i className="material-icons">face</i>
+            <MdSearch className="text-red-500 text-2xl" />
           </div>
         </div>
       </div>
@@ -36,7 +43,7 @@ function App() {
       </div>
       {/* end title */}
       {/* data */}
-      <StaysItems items={state.items} />
+      <StaysItems items={state.shortedItems} />
     </div>
   );
 }
