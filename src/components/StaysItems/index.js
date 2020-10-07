@@ -1,5 +1,5 @@
 import React from "react";
-
+import { MdStar } from "react-icons/md";
 export default function StaysItems({ items }) {
   return (
     <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 font-medium text-gray-700">
@@ -23,7 +23,12 @@ export default function StaysItems({ items }) {
                   {item.type} {item.beds ? `. ${item.beds} beds` : null}
                 </div>
               </div>
-              <div>{item.rating}</div>
+              <div className="flex items-center">
+                <div className="px-2">
+                  <MdStar className="text-red-500" />
+                </div>
+                {item.rating}
+              </div>
             </div>
 
             <div className="text-sm font mt-2">
