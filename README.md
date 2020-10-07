@@ -8,11 +8,11 @@
 
 <div align="center">
   <h3>
-    <a href="https://{your-demo-link.your-domain}">
+    <a href="https://windbnbchallengs.netlify.app/">
       Demo
     </a>
     <span> | </span>
-    <a href="https://{your-url-to-the-solution}">
+    <a href="https://devchallenges.io/solutions/KXDCKlWxzK1lZX6USeQA">
       Solution
     </a>
     <span> | </span>
@@ -37,14 +37,7 @@
 
 ## Overview
 
-![screenshot](https://user-images.githubusercontent.com/16707738/92399059-5716eb00-f132-11ea-8b14-bcacdc8ec97b.png)
-
-Introduce your projects by taking a screenshot or a gif. Try to tell visitors a story about your project by answering:
-
-- Where can I see your demo?
-- What was your experience?
-- What have you learned/improved?
-- Your wisdom? :)
+![screely-1602090042866](https://user-images.githubusercontent.com/48597821/95363427-a6029c80-08f9-11eb-8adb-239165f03d37.png)
 
 ### Built With
 
@@ -67,7 +60,7 @@ To clone and run this application, you'll need [Git](https://git-scm.com) and [N
 
 ```bash
 # Clone this repository
-$ git clone https://github.com/rahulsya/your-project-name
+$ git clone https://github.com/rahulsya/devChallengsWindBnb
 
 # Install dependencies
 $ npm install
