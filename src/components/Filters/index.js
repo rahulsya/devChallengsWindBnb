@@ -1,7 +1,7 @@
 import React from "react";
 import { StaysContext } from "../../context/stays-context";
 import { FILTER_DATA, TOOGLE_FILTER } from "../../context/action";
-import { MdSearch, MdLocationOn } from "react-icons/md";
+import { MdSearch, MdLocationOn, MdClose } from "react-icons/md";
 
 const getUnique = (items, value) => {
   return [...new Set(items.map((item) => item[value]))];
@@ -51,7 +51,18 @@ export default function Filters() {
   };
 
   return (
-    <div className="z-10 absolute top-0 right-0 lg:w-full bg-white py-6 w-full">
+    <div className="z-10 absolute top-0 right-0 lg:w-full bg-white pb-6 w-full">
+      {/* close button */}
+      <div className="container mx-auto px-5 py-2">
+        <div className="flex justify-between items-center">
+          <div className="font-semibold text-sm">Edit your search</div>
+          <MdClose
+            className="text-xl lg:text-3xl cursor-pointer hover:text-red-500"
+            onClick={() => dispatch({ type: TOOGLE_FILTER })}
+          />
+        </div>
+      </div>
+      {/* end close button */}
       <div className="container mx-auto px-5 lg:px-0">
         <form onSubmit={handleSubmit}>
           <div className="px-3 py-2 flex flex-col lg:flex-row justify-between lg:items-center shadow-lg rounded-lg">
@@ -78,7 +89,7 @@ export default function Filters() {
                 type="text"
                 id="guest"
                 placeholder="Add guest"
-                className="py-2 lg:py-0 w-fullcursor-pointer"
+                className="py-2 lg:py-0 w-full cursor-pointer"
                 readOnly
                 value={
                   guest
@@ -92,7 +103,11 @@ export default function Filters() {
             </div>
 
             <div className="w-2/3 text-center ">
-              <button className="font-semibold text-white bg-red-500 py-2 px-4 rounded-lg hidden lg:block">
+              <button
+                className="font-semibold text-white bg-red-500 
+              py-2 px-4 rounded-lg hidden lg:block
+              hover:bg-red-400"
+              >
                 <div className="flex items-center">
                   <div className="text-2xl pr-2">
                     <MdSearch />
@@ -109,14 +124,22 @@ export default function Filters() {
           <div className="w-2/3">
             {activeByLocation && (
               <ul>
-                {cities.map((city, i) => {
+                {cities.map((cityItems, i) => {
                   return (
-                    <li className="mt-4" key={i} onClick={() => setCity(city)}>
-                      <div className="flex items-center">
+                    <li
+                      className="mt-4"
+                      key={i}
+                      onClick={() => setCity(cityItems)}
+                    >
+                      <div
+                        className={`flex items-center cursor-pointer ${
+                          city === cityItems ? "text-red-500" : ""
+                        } `}
+                      >
                         <div className="pr-2">
                           <MdLocationOn />
                         </div>
-                        {city}, Findland
+                        {cityItems}, Findland
                       </div>
                     </li>
                   );
@@ -174,7 +197,8 @@ export default function Filters() {
           <div className="w-full lg:w-2/3 text-center flex justify-center">
             <button
               className="mt-12 mb-5 font-semibold text-white bg-red-500 
-            py-2 px-4 rounded-lg block lg:hidden"
+            py-2 px-4 rounded-lg block lg:hidden
+            hover:bg-red-400"
               onClick={handleSubmit}
             >
               <div className="flex items-center">
